@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <span>@User.Identity.Name</span>
+    <a asp-action="LogOut" asp-controller="Account" class="btn btn-danger">Log Out</a>
+}
+else
+{
+    <a asp-action="Login" asp-controller="Account" class="btn btn-success">Log In</a>
+}
+
