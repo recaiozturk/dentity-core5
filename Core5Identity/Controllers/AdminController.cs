@@ -1,7 +1,9 @@
 ﻿using Core5Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
+
 
 namespace Core5Identity.Controllers
 {
@@ -39,20 +41,45 @@ namespace Core5Identity.Controllers
                 user.UserName = model.UserName;
                 user.Email = model.Email;
 
-                var result = await userManager.CreateAsync(user,model.Password);
+                //test
+                IdentityResult result;
 
-                //kulanıcı başarılı bir şekilde oluştu mu
-                if (result.Succeeded)
+                try
                 {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    foreach (var item in result.Errors)
+                     result = await userManager.CreateAsync(user, model.Password);
+
+                    //kulanıcı başarılı bir şekilde oluştu mu
+                    if (result.Succeeded)
                     {
-                        ModelState.AddModelError("",item.Description);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        foreach (var item in result.Errors)
+                        {
+                            ModelState.AddModelError("", item.Description);
+                        }
                     }
                 }
+                catch(Exception e)
+                {
+                    ModelState.AddModelError("", "this user is already taken");
+                }
+
+                
+
+                //kulanıcı başarılı bir şekilde oluştu mu
+                //if (result.Succeeded)
+                //{
+                //    return RedirectToAction("Index");
+                //}
+                //else
+                //{
+                //    foreach (var item in result.Errors)
+                //    {
+                //        ModelState.AddModelError("",item.Description);
+                //    }
+                //}
             }
 
             return View(model);

@@ -37,22 +37,23 @@ namespace Core5Identity
             //services.ConfigureApplicationCookie(opt => opt.LoginPath = "/Home/Login");
 
             //custom password validate için
-            services.AddTransient<IPasswordValidator<ApplicationUser>, CustomPasswordValidater>();
+            //services.AddTransient<IPasswordValidator<ApplicationUser>, CustomPasswordValidater>();
 
             //custom userName,email validate
-            services.AddTransient<IUserValidator<ApplicationUser>, CustomUserValidater>();
+            //services.AddTransient<IUserValidator<ApplicationUser>, CustomUserValidater>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => 
             {
 
-                options.User.AllowedUserNameCharacters = "abcdefgklmn"; //username de istediðimiz karakterleri belirleyebirlirz
+                //options.User.AllowedUserNameCharacters = "abcdefgklmn"; //username de istediðimiz karakterleri belirleyebirlirz
                 options.User.RequireUniqueEmail = true; //tek bir email hakký 
-
-                options.Password.RequiredLength = 6;    //minumum kac akrakter olsun
-                options.Password.RequireLowercase = false;  //Küçük harf zorunluluðu
-                options.Password.RequireUppercase=false;    //Büyük Harf zorunluluðu
-                options.Password.RequireNonAlphanumeric = false;    //AlphaNumeric zorunluluðu olmasýn
-                options.Password.RequireDigit = false;  //en az 1 rakam olsun mu olmasýn mo
+                
+                
+                //options.Password.RequiredLength = 6;    //minumum kac akrakter olsun
+                //options.Password.RequireLowercase = false;  //Küçük harf zorunluluðu
+                //options.Password.RequireUppercase=false;    //Büyük Harf zorunluluðu
+                //options.Password.RequireNonAlphanumeric = false;    //AlphaNumeric zorunluluðu olmasýn
+                //options.Password.RequireDigit = false;  //en az 1 rakam olsun mu olmasýn mo
             })
             .AddEntityFrameworkStores<ApplicationIdentityDbContext>()
             .AddDefaultTokenProviders();
