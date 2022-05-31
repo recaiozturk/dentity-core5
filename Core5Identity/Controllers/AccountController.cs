@@ -63,5 +63,11 @@ namespace Core5Identity.Controllers
             await signInManager?.SignOutAsync();
             return RedirectToAction("Index", "Home");   
         }
+
+        //Erişim Engellendi Sayfası
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

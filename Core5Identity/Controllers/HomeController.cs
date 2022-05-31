@@ -10,5 +10,11 @@ namespace Core5Identity.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles ="Admin")]
+        public IActionResult Sample()
+        {
+            return View();
+        }
     }
 }

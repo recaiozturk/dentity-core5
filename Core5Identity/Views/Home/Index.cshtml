@@ -3,11 +3,21 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!--Kullanıcı Si steme Login Olmuş Mu-->
+<!--Kullanıcı Si sisteme Login Olmuş Mu-->
 @if (User.Identity.IsAuthenticated)
 {
     <span>@User.Identity.Name</span>
+
+    if (User.IsInRole("Admin"))
+    {
+        <div class="bg-success mb-1 p-2 text-white">
+           Admin Special
+        </div>
+    }
+
+    <a asp-action="Sample" asp-controller="Home" class="btn btn-warning">Admin Sample</a>
     <a asp-action="LogOut" asp-controller="Account" class="btn btn-danger">Log Out</a>
+
 }
 else
 {
